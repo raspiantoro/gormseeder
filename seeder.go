@@ -25,24 +25,24 @@ func (seederRecord) TableName() string {
 
 type SeederFunc func(tx *gorm.DB) (err error)
 
-type Seeders struct {
+type Seed struct {
 	Key      string
 	Name     string
 	Seed     SeederFunc
 	Rollback SeederFunc
 }
 
-type Gormseeder struct {
+type Seeder struct {
 	db      *gorm.DB
-	seeders []*Seeders
+	seeders []*Seed
 }
 
-func New(db *gorm.DB, seeders []*Seeders) *Gormseeder {
+func New(db *gorm.DB, seeders []*Seed) *Seeder {
 	sort.Slice(seeders, func(i, j int) bool {
 		return seeders[i].Key < seeders[j].Key
 	})
 
-	s := &Gormseeder{
+	s := &Seeder{
 		db:      db,
 		seeders: seeders,
 	}
@@ -50,11 +50,11 @@ func New(db *gorm.DB, seeders []*Seeders) *Gormseeder {
 	return s
 }
 
-func (s *Gormseeder) Add(seeders *Seeders) {
+func (s *Seeder) Add(seeders *Seed) {
 	s.seeders = append(s.seeders, seeders)
 }
 
-func (s *Gormseeder) Seed() error {
+func (s *Seeder) Seed() error {
 	if err := s.createTable(); err != nil {
 		return err
 	}
@@ -68,7 +68,7 @@ func (s *Gormseeder) Seed() error {
 	return nil
 }
 
-func (s *Gormseeder) Rollback() error {
+func (s *Seeder) Rollback() error {
 	if !s.db.Migrator().HasTable(seederRecord{}) {
 		return ErrSeedersTableNotFound
 	}
@@ -96,7 +96,7 @@ func (s *Gormseeder) Rollback() error {
 	return nil
 }
 
-func (s *Gormseeder) createTable() error {
+func (s *Seeder) createTable() error {
 	if s.db.Migrator().HasTable(seederRecord{}) {
 		return nil
 	}
@@ -104,7 +104,7 @@ func (s *Gormseeder) createTable() error {
 	return s.db.AutoMigrate(&seederRecord{})
 }
 
-func (s *Gormseeder) seed(seeders *Seeders) error {
+func (s *Seeder) seed(seeders *Seed) error {
 	tx := s.db.Begin()
 	defer tx.Rollback()
 
@@ -134,7 +134,7 @@ func (s *Gormseeder) seed(seeders *Seeders) error {
 	return tx.Commit().Error
 }
 
-func (s *Gormseeder) rollback(seeders *Seeders) error {
+func (s *Seeder) rollback(seeders *Seed) error {
 	tx := s.db.Begin()
 	defer tx.Rollback()
 

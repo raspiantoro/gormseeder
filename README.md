@@ -11,7 +11,7 @@ Key Features:
 
 - Customizable Seeder Logic: Gormseeder provides the flexibility to define complex seeder logic, accommodating everything from simple data inserts to more sophisticated data relationships. You can customize your seeders to meet the unique needs of your application.
 
-- CLI Utility: The accompanying CLI tool, **Gormseed**, simplifies the process of generating and managing seeder files. With a few commands, you can create new seeders, run them, or roll them back, making it easy to maintain your seed data over the course of your project's development.
+- CLI Utility: The accompanying CLI tool, [Gormseed](./gormseed/README.md), simplifies the process of generating and managing seeder files. With a few commands, you can create new seeders, run them, or roll them back, making it easy to maintain your seed data over the course of your project's development.
 
 - Environment-Specific Seeding: Gormseeder supports environment-specific seeders, allowing you to define different seed data for development, testing, and production environments. This ensures that each environment is populated with the appropriate data for its purpose.
 

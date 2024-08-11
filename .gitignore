@@ -1,3 +1,6 @@
-gormseed/
-go.work
-go.work.sum
+*.DS_Store
+bin
+gormseed/bin
+gormseed/gormseed
+data
+/example/*/gormseed
