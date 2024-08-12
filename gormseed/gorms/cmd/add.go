@@ -23,7 +23,7 @@ var addCmd = &cobra.Command{
 	Long:  longDesc,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			fmt.Print("Error: add needs a name for the seed\n\n")
+			fmt.Print("Error: add needs a name for the seed name\n\n")
 			cmd.Help()
 			return
 		} else if len(args) > 1 {

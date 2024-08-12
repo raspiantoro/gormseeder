@@ -6,5 +6,5 @@ With Gormseed, you can easily generate seeder files that are organized and maint
 
 ## How to install
 ```bash
-go install github.com/raspiantoro/gormseeder/gormseed/cli@latest
+go install github.com/raspiantoro/gormseeder/gormseed/gorms@latest
 ```
