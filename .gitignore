@@ -4,3 +4,5 @@ gormseed/bin
 gormseed/gormseed
 data
 /example/*/gormseed
+gormseed/example
+gormseed/db

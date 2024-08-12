@@ -9,11 +9,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	flagDir string
+)
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gormseed",
+	Use:   "gorms",
 	Short: "CLI helper for Gormseeder",
-	Long:  `Gormseed is a CLI utility for Gormseeder that helps you create and manage your seeder files.`,
+	Long:  `Gormseed (gorms) is a CLI utility for Gormseeder that helps you create and manage your seeder files.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
